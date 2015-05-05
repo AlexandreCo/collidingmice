@@ -58,11 +58,12 @@ protected:
     void advance(int step);
 
 private:
+    bool isDead;
     qreal angle;
     qreal speed;
     qreal mouseEyeDirection;
     QColor color;
+
 };
-//! [0]
 
 #endif

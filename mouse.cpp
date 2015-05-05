@@ -58,76 +58,80 @@ static qreal normalizeAngle(qreal angle)
     return angle;
 }
 
-//! [0]
+
 Mouse::Mouse()
-    : angle(0), speed(0), mouseEyeDirection(0),
+    : isDead(false),angle(0), speed(0), mouseEyeDirection(0),
       color(qrand() % 256, qrand() % 256, qrand() % 256)
 {
     setRotation(qrand() % (360 * 16));
 }
-//! [0]
 
-//! [1]
 QRectF Mouse::boundingRect() const
 {
     qreal adjust = 0.5;
     return QRectF(-18 - adjust, -22 - adjust,
                   36 + adjust, 60 + adjust);
 }
-//! [1]
 
-//! [2]
 QPainterPath Mouse::shape() const
 {
     QPainterPath path;
     path.addRect(-10, -20, 20, 40);
     return path;
 }
-//! [2]
 
-//! [3]
 void Mouse::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
-    // Body
-    painter->setBrush(color);
-    painter->drawEllipse(-10, -20, 20, 40);
+    if(isDead){
+        // dead mouse
 
-    // Eyes
-    painter->setBrush(Qt::white);
-    painter->drawEllipse(-10, -17, 8, 8);
-    painter->drawEllipse(2, -17, 8, 8);
+        painter->setBrush(Qt::red);
+        for(int i=0;i<10;i++){
+            painter->drawEllipse(-(qrand() % 20), -(qrand() % 20), qrand() % 20, qrand() % 20);
+        }
+    }else{
+        // Body
+        painter->setBrush(color);
+        painter->drawEllipse(-10, -20, 20, 40);
 
-    // Nose
-    painter->setBrush(Qt::black);
-    painter->drawEllipse(QRectF(-2, -22, 4, 4));
+        // Eyes
+        painter->setBrush(Qt::white);
+        painter->drawEllipse(-10, -17, 8, 8);
+        painter->drawEllipse(2, -17, 8, 8);
 
-    // Pupils
-    painter->drawEllipse(QRectF(-8.0 + mouseEyeDirection, -17, 4, 4));
-    painter->drawEllipse(QRectF(4.0 + mouseEyeDirection, -17, 4, 4));
+        // Nose
+        painter->setBrush(Qt::black);
+        painter->drawEllipse(QRectF(-2, -22, 4, 4));
 
-    // Ears
-    painter->setBrush(scene()->collidingItems(this).isEmpty() ? Qt::darkYellow : Qt::red);
-    painter->drawEllipse(-17, -12, 16, 16);
-    painter->drawEllipse(1, -12, 16, 16);
+        // Pupils
+        painter->drawEllipse(QRectF(-8.0 + mouseEyeDirection, -17, 4, 4));
+        painter->drawEllipse(QRectF(4.0 + mouseEyeDirection, -17, 4, 4));
 
-    // Tail
-    QPainterPath path(QPointF(0, 20));
-    path.cubicTo(-5, 22, -5, 22, 0, 25);
-    path.cubicTo(5, 27, 5, 32, 0, 30);
-    path.cubicTo(-5, 32, -5, 42, 0, 35);
-    painter->setBrush(Qt::NoBrush);
-    painter->drawPath(path);
+        // Ears
+        painter->setBrush(scene()->collidingItems(this).isEmpty() ? Qt::darkYellow : Qt::red);
+        painter->drawEllipse(-17, -12, 16, 16);
+        painter->drawEllipse(1, -12, 16, 16);
+
+        // Tail
+        QPainterPath path(QPointF(0, 20));
+        path.cubicTo(-5, 22, -5, 22, 0, 25);
+        path.cubicTo(5, 27, 5, 32, 0, 30);
+        path.cubicTo(-5, 32, -5, 42, 0, 35);
+        painter->setBrush(Qt::NoBrush);
+        painter->drawPath(path);
+    }
 }
-//! [3]
 
-//! [4]
 void Mouse::advance(int step)
 {
     if (!step)
         return;
-//! [4]
+
+    if(isUnderMouse()){
+        isDead=true;
+    }
+
     // Don't move too far away
-//! [5]
     QLineF lineToCenter(QPointF(0, 0), mapFromScene(0, 0));
     if (lineToCenter.length() > 150) {
         qreal angleToCenter = ::acos(lineToCenter.dx() / lineToCenter.length());
@@ -146,17 +150,14 @@ void Mouse::advance(int step)
         angle += 0.25;
     } else if (::sin(angle) > 0) {
         angle -= 0.25;
-//! [5] //! [6]
     }
-//! [6]
 
     // Try not to crash with any other mice
-//! [7]
     QList<QGraphicsItem *> dangerMice = scene()->items(QPolygonF()
                                                        << mapToScene(0, 0)
                                                        << mapToScene(-30, -50)
                                                        << mapToScene(30, -50));
-    foreach (QGraphicsItem *item, dangerMice) {
+   foreach (QGraphicsItem *item, dangerMice) {
         if (item == this)
             continue;
         
@@ -172,29 +173,30 @@ void Mouse::advance(int step)
         } else if (angleToMouse <= TwoPi && angleToMouse > (TwoPi - Pi / 2)) {
             // Rotate left
             angle -= 0.5;
-//! [7] //! [8]
         }
-//! [8] //! [9]
+
     }
-//! [9]
+
 
     // Add some random movement
-//! [10]
     if (dangerMice.size() > 1 && (qrand() % 10) == 0) {
         if (qrand() % 1)
             angle += (qrand() % 100) / 500.0;
         else
             angle -= (qrand() % 100) / 500.0;
     }
-//! [10]
 
-//! [11]
     speed += (-50 + qrand() % 100) / 100.0;
 
     qreal dx = ::sin(angle) * 10;
     mouseEyeDirection = (qAbs(dx / 5) < 1) ? 0 : dx / 5;
 
-    setRotation(rotation() + dx);
-    setPos(mapToParent(0, -(3 + sin(speed) * 3)));
+    if(isDead){
+        setRotation(rotation());
+    }
+    else{
+        setRotation(rotation() + dx);
+        setPos(mapToParent(0, -(3 + sin(speed) * 3)));
+
+    }
 }
-//! [11]

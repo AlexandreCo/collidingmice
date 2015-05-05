@@ -45,43 +45,37 @@
 
 static const int MouseCount = 7;
 
-//! [0]
+
 int main(int argc, char **argv)
 {
     QApplication app(argc, argv);
     qsrand(QTime(0,0,0).secsTo(QTime::currentTime()));
-//! [0]
 
-//! [1]
     QGraphicsScene scene;
-    scene.setSceneRect(-300, -300, 600, 600);
-//! [1] //! [2]
-    scene.setItemIndexMethod(QGraphicsScene::NoIndex);
-//! [2]
+    scene.setSceneRect(-0, -0, 220, 300);
 
-//! [3]
+    scene.setItemIndexMethod(QGraphicsScene::NoIndex);
+
     for (int i = 0; i < MouseCount; ++i) {
         Mouse *mouse = new Mouse;
         mouse->setPos(::sin((i * 6.28) / MouseCount) * 200,
                       ::cos((i * 6.28) / MouseCount) * 200);
         scene.addItem(mouse);
     }
-//! [3]
 
-//! [4]
     QGraphicsView view(&scene);
     view.setRenderHint(QPainter::Antialiasing);
     view.setBackgroundBrush(QPixmap(":/images/cheese.jpg"));
-//! [4] //! [5]
+
     view.setCacheMode(QGraphicsView::CacheBackground);
     view.setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
     view.setDragMode(QGraphicsView::ScrollHandDrag);
-//! [5] //! [6]
+
     view.setWindowTitle(QT_TRANSLATE_NOOP(QGraphicsView, "Colliding Mice"));
 #if defined(Q_WS_S60) || defined(Q_WS_MAEMO_5) || defined(Q_WS_SIMULATOR)
     view.showMaximized();
 #else
-    view.resize(400, 300);
+    view.resize(240, 320);
     view.show();
 #endif
 
@@ -91,4 +85,4 @@ int main(int argc, char **argv)
 
     return app.exec();
 }
-//! [6]
+
