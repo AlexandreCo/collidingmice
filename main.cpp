@@ -37,12 +37,11 @@
 ** $QT_END_LICENSE$
 **
 ****************************************************************************/
-
-#include "mouse.h"
-
-#include <QtGui>
+#include <QtWidgets>
 
 #include <math.h>
+
+#include "mouse.h"
 
 static const int MouseCount = 7;
 
