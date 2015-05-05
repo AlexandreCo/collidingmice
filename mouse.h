@@ -53,12 +53,14 @@ public:
     QPainterPath shape() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                QWidget *widget);
+    void mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event);
 
 protected:
     void advance(int step);
 
 private:
     bool isDead;
+    bool isReincarnation;
     qreal angle;
     qreal speed;
     qreal mouseEyeDirection;

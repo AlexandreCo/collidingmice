@@ -60,7 +60,7 @@ static qreal normalizeAngle(qreal angle)
 
 
 Mouse::Mouse()
-    : isDead(false),angle(0), speed(0), mouseEyeDirection(0),
+    : isDead(false),isReincarnation(false),angle(0), speed(0), mouseEyeDirection(0),
       color(qrand() % 256, qrand() % 256, qrand() % 256)
 {
     setRotation(qrand() % (360 * 16));
@@ -122,14 +122,23 @@ void Mouse::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *
     }
 }
 
+void Mouse::mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event){
+    isDead=false;
+    isReincarnation=true;
+}
+
 void Mouse::advance(int step)
 {
     if (!step)
         return;
 
     if(isUnderMouse()){
-        isDead=true;
+        if(isReincarnation==false)
+            isDead=true;
+    }else{
+        isReincarnation=false;
     }
+
 
     // Don't move too far away
     QLineF lineToCenter(QPointF(0, 0), mapFromScene(0, 0));
@@ -157,7 +166,7 @@ void Mouse::advance(int step)
                                                        << mapToScene(0, 0)
                                                        << mapToScene(-30, -50)
                                                        << mapToScene(30, -50));
-   foreach (QGraphicsItem *item, dangerMice) {
+    foreach (QGraphicsItem *item, dangerMice) {
         if (item == this)
             continue;
         

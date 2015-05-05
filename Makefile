@@ -321,9 +321,14 @@ compiler_clean: compiler_rcc_clean
 
 ####### Compile
 
-main.o: main.cpp mouse.h \
-		/usr/include/qt5/QtWidgets/QGraphicsItem \
-		/usr/include/qt5/QtWidgets/qgraphicsitem.h \
+main.o: main.cpp /usr/include/qt5/QtWidgets/QtWidgets \
+		/usr/include/qt5/QtWidgets/QtWidgetsDepends \
+		/usr/include/qt5/QtCore/QtCore \
+		/usr/include/qt5/QtCore/QtCoreDepends \
+		/usr/include/qt5/QtCore/qabstractanimation.h \
+		/usr/include/qt5/QtCore/qobject.h \
+		/usr/include/qt5/QtCore/qobjectdefs.h \
+		/usr/include/qt5/QtCore/qnamespace.h \
 		/usr/include/qt5/QtCore/qglobal.h \
 		/usr/include/qt5/QtCore/qconfig.h \
 		/usr/include/qt5/QtCore/qfeatures.h \
@@ -360,9 +365,6 @@ main.o: main.cpp mouse.h \
 		/usr/include/qt5/QtCore/qtypeinfo.h \
 		/usr/include/qt5/QtCore/qtypetraits.h \
 		/usr/include/qt5/QtCore/qsysinfo.h \
-		/usr/include/qt5/QtCore/qobject.h \
-		/usr/include/qt5/QtCore/qobjectdefs.h \
-		/usr/include/qt5/QtCore/qnamespace.h \
 		/usr/include/qt5/QtCore/qobjectdefs_impl.h \
 		/usr/include/qt5/QtCore/qstring.h \
 		/usr/include/qt5/QtCore/qchar.h \
@@ -380,6 +382,14 @@ main.o: main.cpp mouse.h \
 		/usr/include/qt5/QtCore/qcontainerfwd.h \
 		/usr/include/qt5/QtCore/qisenum.h \
 		/usr/include/qt5/QtCore/qobject_impl.h \
+		/usr/include/qt5/QtCore/qanimationgroup.h \
+		/usr/include/qt5/QtCore/qparallelanimationgroup.h \
+		/usr/include/qt5/QtCore/qpauseanimation.h \
+		/usr/include/qt5/QtCore/qpropertyanimation.h \
+		/usr/include/qt5/QtCore/qvariantanimation.h \
+		/usr/include/qt5/QtCore/qeasingcurve.h \
+		/usr/include/qt5/QtCore/qvector.h \
+		/usr/include/qt5/QtCore/qpoint.h \
 		/usr/include/qt5/QtCore/qvariant.h \
 		/usr/include/qt5/QtCore/qmap.h \
 		/usr/include/qt5/QtCore/qpair.h \
@@ -389,47 +399,19 @@ main.o: main.cpp mouse.h \
 		/usr/include/qt5/QtCore/qiodevice.h \
 		/usr/include/qt5/QtCore/qlocale.h \
 		/usr/include/qt5/QtCore/qshareddata.h \
-		/usr/include/qt5/QtCore/qvector.h \
-		/usr/include/qt5/QtCore/qpoint.h \
 		/usr/include/qt5/QtCore/qset.h \
 		/usr/include/qt5/QtCore/qcontiguouscache.h \
 		/usr/include/qt5/QtCore/qstringlist.h \
 		/usr/include/qt5/QtCore/qdatastream.h \
 		/usr/include/qt5/QtCore/qregexp.h \
 		/usr/include/qt5/QtCore/qstringmatcher.h \
-		/usr/include/qt5/QtCore/qrect.h \
-		/usr/include/qt5/QtCore/qsize.h \
-		/usr/include/qt5/QtGui/qpainterpath.h \
-		/usr/include/qt5/QtGui/qmatrix.h \
-		/usr/include/qt5/QtGui/qpolygon.h \
-		/usr/include/qt5/QtGui/qregion.h \
-		/usr/include/qt5/QtGui/qwindowdefs.h \
-		/usr/include/qt5/QtGui/qwindowdefs_win.h \
-		/usr/include/qt5/QtCore/qline.h \
-		/usr/include/qt5/QtGui/qpixmap.h \
-		/usr/include/qt5/QtGui/qpaintdevice.h \
-		/usr/include/qt5/QtGui/qcolor.h \
-		/usr/include/qt5/QtGui/qrgb.h \
-		/usr/include/qt5/QtCore/qsharedpointer.h \
-		/usr/include/qt5/QtCore/qsharedpointer_impl.h \
-		/usr/include/qt5/QtGui/qimage.h \
-		/usr/include/qt5/QtGui/qtransform.h \
-		/usr/include/qt5/QtGui/QtGui \
-		/usr/include/qt5/QtGui/QtGuiDepends \
-		/usr/include/qt5/QtCore/QtCore \
-		/usr/include/qt5/QtCore/QtCoreDepends \
-		/usr/include/qt5/QtCore/qabstractanimation.h \
-		/usr/include/qt5/QtCore/qanimationgroup.h \
-		/usr/include/qt5/QtCore/qparallelanimationgroup.h \
-		/usr/include/qt5/QtCore/qpauseanimation.h \
-		/usr/include/qt5/QtCore/qpropertyanimation.h \
-		/usr/include/qt5/QtCore/qvariantanimation.h \
-		/usr/include/qt5/QtCore/qeasingcurve.h \
 		/usr/include/qt5/QtCore/qsequentialanimationgroup.h \
 		/usr/include/qt5/QtCore/qtextcodec.h \
 		/usr/include/qt5/QtCore/qendian.h \
 		/usr/include/qt5/QtCore/qlibraryinfo.h \
 		/usr/include/qt5/QtCore/qdatetime.h \
+		/usr/include/qt5/QtCore/qsharedpointer.h \
+		/usr/include/qt5/QtCore/qsharedpointer_impl.h \
 		/usr/include/qt5/QtCore/qnumeric.h \
 		/usr/include/qt5/QtCore/qbuffer.h \
 		/usr/include/qt5/QtCore/qdir.h \
@@ -518,8 +500,11 @@ main.o: main.cpp mouse.h \
 		/usr/include/qt5/QtCore/qcommandlineparser.h \
 		/usr/include/qt5/QtCore/qcryptographichash.h \
 		/usr/include/qt5/QtCore/qelapsedtimer.h \
+		/usr/include/qt5/QtCore/qline.h \
 		/usr/include/qt5/QtCore/qlinkedlist.h \
 		/usr/include/qt5/QtCore/qmargins.h \
+		/usr/include/qt5/QtCore/qrect.h \
+		/usr/include/qt5/QtCore/qsize.h \
 		/usr/include/qt5/QtCore/qmessageauthenticationcode.h \
 		/usr/include/qt5/QtCore/qqueue.h \
 		/usr/include/qt5/QtCore/qregularexpression.h \
@@ -530,8 +515,15 @@ main.o: main.cpp mouse.h \
 		/usr/include/qt5/QtCore/qtimezone.h \
 		/usr/include/qt5/QtCore/qxmlstream.h \
 		/usr/include/qt5/QtCore/qtcoreversion.h \
+		/usr/include/qt5/QtGui/QtGui \
+		/usr/include/qt5/QtGui/QtGuiDepends \
 		/usr/include/qt5/QtGui/qaccessible.h \
+		/usr/include/qt5/QtGui/qcolor.h \
+		/usr/include/qt5/QtGui/qrgb.h \
 		/usr/include/qt5/QtGui/qevent.h \
+		/usr/include/qt5/QtGui/qwindowdefs.h \
+		/usr/include/qt5/QtGui/qwindowdefs_win.h \
+		/usr/include/qt5/QtGui/qregion.h \
 		/usr/include/qt5/QtGui/qkeysequence.h \
 		/usr/include/qt5/QtGui/qvector2d.h \
 		/usr/include/qt5/QtGui/qtouchdevice.h \
@@ -539,6 +531,13 @@ main.o: main.cpp mouse.h \
 		/usr/include/qt5/QtGui/qaccessibleobject.h \
 		/usr/include/qt5/QtGui/qaccessibleplugin.h \
 		/usr/include/qt5/QtGui/qbitmap.h \
+		/usr/include/qt5/QtGui/qpixmap.h \
+		/usr/include/qt5/QtGui/qpaintdevice.h \
+		/usr/include/qt5/QtGui/qimage.h \
+		/usr/include/qt5/QtGui/qtransform.h \
+		/usr/include/qt5/QtGui/qmatrix.h \
+		/usr/include/qt5/QtGui/qpolygon.h \
+		/usr/include/qt5/QtGui/qpainterpath.h \
 		/usr/include/qt5/QtGui/qicon.h \
 		/usr/include/qt5/QtGui/qiconengine.h \
 		/usr/include/qt5/QtGui/qiconengineplugin.h \
@@ -623,7 +622,143 @@ main.o: main.cpp mouse.h \
 		/usr/include/qt5/QtGui/qtexttable.h \
 		/usr/include/qt5/QtGui/qdesktopservices.h \
 		/usr/include/qt5/QtGui/qvalidator.h \
-		/usr/include/qt5/QtGui/qtguiversion.h
+		/usr/include/qt5/QtGui/qtguiversion.h \
+		/usr/include/qt5/QtWidgets/qaccessiblewidget.h \
+		/usr/include/qt5/QtWidgets/qcolordialog.h \
+		/usr/include/qt5/QtWidgets/qdialog.h \
+		/usr/include/qt5/QtWidgets/qwidget.h \
+		/usr/include/qt5/QtWidgets/qsizepolicy.h \
+		/usr/include/qt5/QtWidgets/qerrormessage.h \
+		/usr/include/qt5/QtWidgets/qfiledialog.h \
+		/usr/include/qt5/QtWidgets/qfilesystemmodel.h \
+		/usr/include/qt5/QtWidgets/qfontdialog.h \
+		/usr/include/qt5/QtWidgets/qinputdialog.h \
+		/usr/include/qt5/QtWidgets/qlineedit.h \
+		/usr/include/qt5/QtWidgets/qframe.h \
+		/usr/include/qt5/QtWidgets/qmessagebox.h \
+		/usr/include/qt5/QtWidgets/qprogressdialog.h \
+		/usr/include/qt5/QtWidgets/qwizard.h \
+		/usr/include/qt5/QtWidgets/qgraphicseffect.h \
+		/usr/include/qt5/QtWidgets/qgraphicsanchorlayout.h \
+		/usr/include/qt5/QtWidgets/qgraphicsitem.h \
+		/usr/include/qt5/QtWidgets/qgraphicslayout.h \
+		/usr/include/qt5/QtWidgets/qgraphicslayoutitem.h \
+		/usr/include/qt5/QtWidgets/qgraphicsgridlayout.h \
+		/usr/include/qt5/QtWidgets/qgraphicsitemanimation.h \
+		/usr/include/qt5/QtWidgets/qgraphicslinearlayout.h \
+		/usr/include/qt5/QtWidgets/qgraphicsproxywidget.h \
+		/usr/include/qt5/QtWidgets/qgraphicswidget.h \
+		/usr/include/qt5/QtWidgets/qgraphicsscene.h \
+		/usr/include/qt5/QtWidgets/qgraphicssceneevent.h \
+		/usr/include/qt5/QtWidgets/qgraphicstransform.h \
+		/usr/include/qt5/QtGui/QVector3D \
+		/usr/include/qt5/QtGui/QMatrix4x4 \
+		/usr/include/qt5/QtWidgets/qgraphicsview.h \
+		/usr/include/qt5/QtWidgets/qscrollarea.h \
+		/usr/include/qt5/QtWidgets/qabstractscrollarea.h \
+		/usr/include/qt5/QtWidgets/qabstractitemdelegate.h \
+		/usr/include/qt5/QtWidgets/qstyleoption.h \
+		/usr/include/qt5/QtWidgets/qabstractspinbox.h \
+		/usr/include/qt5/QtWidgets/qslider.h \
+		/usr/include/qt5/QtWidgets/qabstractslider.h \
+		/usr/include/qt5/QtWidgets/qstyle.h \
+		/usr/include/qt5/QtWidgets/qtabbar.h \
+		/usr/include/qt5/QtWidgets/qtabwidget.h \
+		/usr/include/qt5/QtWidgets/qrubberband.h \
+		/usr/include/qt5/QtWidgets/qabstractitemview.h \
+		/usr/include/qt5/QtWidgets/qcolumnview.h \
+		/usr/include/qt5/QtWidgets/qdatawidgetmapper.h \
+		/usr/include/qt5/QtWidgets/qdirmodel.h \
+		/usr/include/qt5/QtWidgets/qfileiconprovider.h \
+		/usr/include/qt5/QtWidgets/qheaderview.h \
+		/usr/include/qt5/QtWidgets/qitemdelegate.h \
+		/usr/include/qt5/QtWidgets/qitemeditorfactory.h \
+		/usr/include/qt5/QtWidgets/qlistview.h \
+		/usr/include/qt5/QtWidgets/qlistwidget.h \
+		/usr/include/qt5/QtWidgets/qstyleditemdelegate.h \
+		/usr/include/qt5/QtWidgets/qtableview.h \
+		/usr/include/qt5/QtWidgets/qtablewidget.h \
+		/usr/include/qt5/QtWidgets/qtreeview.h \
+		/usr/include/qt5/QtWidgets/qtreewidget.h \
+		/usr/include/qt5/QtWidgets/qtreewidgetitemiterator.h \
+		/usr/include/qt5/QtWidgets/qaction.h \
+		/usr/include/qt5/QtWidgets/qactiongroup.h \
+		/usr/include/qt5/QtWidgets/qapplication.h \
+		/usr/include/qt5/QtWidgets/qdesktopwidget.h \
+		/usr/include/qt5/QtWidgets/qboxlayout.h \
+		/usr/include/qt5/QtWidgets/qlayout.h \
+		/usr/include/qt5/QtWidgets/qlayoutitem.h \
+		/usr/include/qt5/QtWidgets/qgridlayout.h \
+		/usr/include/qt5/QtWidgets/qformlayout.h \
+		/usr/include/qt5/QtWidgets/QLayout \
+		/usr/include/qt5/QtWidgets/qgesture.h \
+		/usr/include/qt5/QtWidgets/qgesturerecognizer.h \
+		/usr/include/qt5/QtWidgets/qshortcut.h \
+		/usr/include/qt5/QtWidgets/qstackedlayout.h \
+		/usr/include/qt5/QtWidgets/qtooltip.h \
+		/usr/include/qt5/QtWidgets/qwhatsthis.h \
+		/usr/include/qt5/QtWidgets/qwidgetaction.h \
+		/usr/include/qt5/QtWidgets/qkeyeventtransition.h \
+		/usr/include/qt5/QtWidgets/qmouseeventtransition.h \
+		/usr/include/qt5/QtWidgets/qcommonstyle.h \
+		/usr/include/qt5/QtWidgets/qdrawutil.h \
+		/usr/include/qt5/QtWidgets/qproxystyle.h \
+		/usr/include/qt5/QtWidgets/QCommonStyle \
+		/usr/include/qt5/QtWidgets/qstylefactory.h \
+		/usr/include/qt5/QtWidgets/qstylepainter.h \
+		/usr/include/qt5/QtWidgets/qstyleplugin.h \
+		/usr/include/qt5/QtWidgets/qcolormap.h \
+		/usr/include/qt5/QtWidgets/qcompleter.h \
+		/usr/include/qt5/QtWidgets/qscroller.h \
+		/usr/include/qt5/QtCore/QPointF \
+		/usr/include/qt5/QtWidgets/QScrollerProperties \
+		/usr/include/qt5/QtWidgets/qscrollerproperties.h \
+		/usr/include/qt5/QtCore/QMetaType \
+		/usr/include/qt5/QtCore/QVariant \
+		/usr/include/qt5/QtWidgets/qsystemtrayicon.h \
+		/usr/include/qt5/QtWidgets/qundogroup.h \
+		/usr/include/qt5/QtWidgets/qundostack.h \
+		/usr/include/qt5/QtWidgets/qundoview.h \
+		/usr/include/qt5/QtWidgets/qabstractbutton.h \
+		/usr/include/qt5/QtWidgets/qbuttongroup.h \
+		/usr/include/qt5/QtWidgets/qcalendarwidget.h \
+		/usr/include/qt5/QtWidgets/qcheckbox.h \
+		/usr/include/qt5/QtWidgets/qcombobox.h \
+		/usr/include/qt5/QtWidgets/qcommandlinkbutton.h \
+		/usr/include/qt5/QtWidgets/qpushbutton.h \
+		/usr/include/qt5/QtWidgets/qdatetimeedit.h \
+		/usr/include/qt5/QtWidgets/qdial.h \
+		/usr/include/qt5/QtWidgets/qdialogbuttonbox.h \
+		/usr/include/qt5/QtWidgets/qdockwidget.h \
+		/usr/include/qt5/QtWidgets/qfocusframe.h \
+		/usr/include/qt5/QtWidgets/qfontcombobox.h \
+		/usr/include/qt5/QtWidgets/qgroupbox.h \
+		/usr/include/qt5/QtWidgets/qkeysequenceedit.h \
+		/usr/include/qt5/QtWidgets/qlabel.h \
+		/usr/include/qt5/QtWidgets/qlcdnumber.h \
+		/usr/include/qt5/QtWidgets/qmainwindow.h \
+		/usr/include/qt5/QtWidgets/qmdiarea.h \
+		/usr/include/qt5/QtWidgets/qmdisubwindow.h \
+		/usr/include/qt5/QtWidgets/qmenu.h \
+		/usr/include/qt5/QtWidgets/qmenubar.h \
+		/usr/include/qt5/QtWidgets/qplaintextedit.h \
+		/usr/include/qt5/QtWidgets/qtextedit.h \
+		/usr/include/qt5/QtWidgets/qprogressbar.h \
+		/usr/include/qt5/QtWidgets/qradiobutton.h \
+		/usr/include/qt5/QtWidgets/qscrollbar.h \
+		/usr/include/qt5/QtWidgets/qsizegrip.h \
+		/usr/include/qt5/QtWidgets/qspinbox.h \
+		/usr/include/qt5/QtWidgets/qsplashscreen.h \
+		/usr/include/qt5/QtWidgets/qsplitter.h \
+		/usr/include/qt5/QtWidgets/qstackedwidget.h \
+		/usr/include/qt5/QtWidgets/qstatusbar.h \
+		/usr/include/qt5/QtWidgets/qtextbrowser.h \
+		/usr/include/qt5/QtWidgets/qtoolbar.h \
+		/usr/include/qt5/QtWidgets/qtoolbox.h \
+		/usr/include/qt5/QtWidgets/qtoolbutton.h \
+		/usr/include/qt5/QtWidgets/qtwidgetsversion.h \
+		mouse.h \
+		/usr/include/qt5/QtWidgets/QGraphicsItem
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 mouse.o: mouse.cpp mouse.h \
