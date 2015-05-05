@@ -1,0 +1,4 @@
+collidingmice
+*.o
+qrc_mice.cpp
+
