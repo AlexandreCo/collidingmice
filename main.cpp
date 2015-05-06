@@ -37,17 +37,30 @@
 ** $QT_END_LICENSE$
 **
 ****************************************************************************/
-#include <QtWidgets>
+
+//QT4
+#include <QtGui>
+//QT5
+//#include <QtWidgets>
+
 
 #include <math.h>
+#include <iostream>
 
 #include "mouse.h"
 
-static const int MouseCount = 7;
+static int MouseCount = 20;
 
 
 int main(int argc, char **argv)
 {
+    if (argc>0){
+        MouseCount=atoi(argv[1]);
+        if (MouseCount == 0)
+            MouseCount = 5;
+    }
+    std::cout << "MouseCount = " << MouseCount << std::endl;
+
     QApplication app(argc, argv);
     qsrand(QTime(0,0,0).secsTo(QTime::currentTime()));
 
@@ -64,6 +77,7 @@ int main(int argc, char **argv)
     }
 
     QGraphicsView view(&scene);
+
     view.setRenderHint(QPainter::Antialiasing);
     view.setBackgroundBrush(QPixmap(":/images/cheese.jpg"));
 
@@ -76,7 +90,7 @@ int main(int argc, char **argv)
     view.showMaximized();
 #else
     view.resize(240, 320);
-    view.show();
+    view.showFullScreen();
 #endif
 
     QTimer timer;

@@ -7,7 +7,8 @@ TARGET = collidingmice
 INCLUDEPATH += .
 
 # Input
-QT += widgets
+#QT 5
+#QT += widgets
 
 HEADERS += \
         mouse.h
